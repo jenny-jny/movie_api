@@ -5,34 +5,54 @@ const app = express();
 
 let topMovies = [
   {
-    title: 'Casablanca'
+    title: 'Casablanca',
+    director: 'Michael Curtiz',
+    genre: 'Romance/War/Drama'
   },
   {
-    title: 'Up'
+    title: 'Up',
+    director: 'Pete Docter',
+    genre: 'Family/Adventure'
   },
   {
-    title: 'Slumdog Millionaire'
+    title: 'Slumdog Millionaire',
+    director: 'Danny Boyle',
+    genre: 'Drama/Romance'
   },
   {
-    title: 'Gaslight'
+    title: 'Gaslight',
+    director: 'George Cukor',
+    genre: 'Noir/Thriller'
   },
   {
-    title: 'Titanic'
+    title: 'Titanic',
+    director: 'James Cameron',
+    genre: 'Romance/Drama'
   },
   {
-    title: 'The Matrix'
+    title: 'La La Land',
+    director: 'Damien Chazelle',
+    genre: 'Musical/Romance'
   },
   {
-    title: 'The Great Gatsby'
+    title: 'The Great Gatsby',
+    director: 'Baz Luhrmann',
+    genre: 'Romance/Drama'
   },
   {
-    title: 'Once Upon A Time in Hollywood'
+    title: 'Once Upon A Time in Hollywood',
+    director: 'Quentin Tarantino',
+    genre: 'Comedy/Drama'
   },
   {
-    title: 'Forrest Gump'
+    title: 'Forrest Gump',
+    director: 'Robert Zemeckis',
+    genre: 'Drama/Romance'
   },
   {
-    title: 'Gone with the Wind'
+    title: 'Gone with the Wind',
+    director: 'Victor Fleming',
+    genre: 'Romance/Drama'
   }
 ];
 
