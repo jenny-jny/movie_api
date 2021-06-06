@@ -1,4 +1,6 @@
-const express = require('express');
+const express = require('express'),
+morgan = require('morgan');
+
 const app = express();
 
 let topMovies = [
@@ -33,6 +35,9 @@ let topMovies = [
     title: 'Gone with the Wind'
   }
 ];
+
+//logging with morgan
+app.use(morgan('common'));
 
 //GET requests
 app.get('/', (req, res) => {
