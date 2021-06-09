@@ -7,52 +7,52 @@ let topMovies = [
   {
     title: 'Casablanca',
     director: 'Michael Curtiz',
-    genre: 'Romance/War/Drama'
+    genre: 'Romance'
   },
   {
     title: 'Up',
     director: 'Pete Docter',
-    genre: 'Family/Adventure'
+    genre: 'Family'
   },
   {
     title: 'Slumdog Millionaire',
     director: 'Danny Boyle',
-    genre: 'Drama/Romance'
+    genre: 'Drama'
   },
   {
     title: 'Gaslight',
     director: 'George Cukor',
-    genre: 'Noir/Thriller'
+    genre: 'Noir'
   },
   {
     title: 'Titanic',
     director: 'James Cameron',
-    genre: 'Romance/Drama'
+    genre: 'Romance'
   },
   {
     title: 'La La Land',
     director: 'Damien Chazelle',
-    genre: 'Musical/Romance'
+    genre: 'Musical'
   },
   {
     title: 'The Great Gatsby',
     director: 'Baz Luhrmann',
-    genre: 'Romance/Drama'
+    genre: 'Romance'
   },
   {
     title: 'Once Upon A Time in Hollywood',
     director: 'Quentin Tarantino',
-    genre: 'Comedy/Drama'
+    genre: 'Comedy'
   },
   {
     title: 'Forrest Gump',
     director: 'Robert Zemeckis',
-    genre: 'Drama/Romance'
+    genre: 'Drama'
   },
   {
     title: 'Gone with the Wind',
     director: 'Victor Fleming',
-    genre: 'Romance/Drama'
+    genre: 'Romance'
   }
 ];
 
