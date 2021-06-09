@@ -47,7 +47,8 @@
         </td>
       </tr>
       <tr>
-        <td>
+        <td> 
+          <!-- expand on image URL and feature -->
           Return data (description, genre, director, image URL, whether it’s featured or not) about a single movie by title to the user
         </td>
         <td>
@@ -75,7 +76,8 @@
           Return data about a genre (description) by movie title
         </td>
         <td>
-          /movies/:genre
+          <!-- /movies/:genre -->
+          /movies/:title/genre
         </td>
         <td>
           GET
@@ -86,8 +88,8 @@
         <td>
           A JSON object holding data about a single genre.
           Example: {
-            genre: "Romance",
-            description: "Romantic love stories that focus on passion, emotion, and the affectionate romantic involvement of the main characters and the journey that their love takes them through dating, courtship or marriage." 
+            genre: "Romance"
+            <!-- description: "..." -->
           }
         </td>
       </tr>
@@ -167,7 +169,7 @@
       </tr>
       <tr>
         <td>
-          Remove a movie from the user's list of favorites (showing only a text that a movie has been removed
+          Remove a movie from the user's list of favorites
         </td>
         <td>
           /users/:username/favorites/:movie
@@ -184,7 +186,7 @@
       </tr>
       <tr>
         <td>
-          Remove an existing users (deregister)
+          Remove an existing user (deregister)
         </td>
         <td>
           /users/:userEmail
