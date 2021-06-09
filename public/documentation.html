@@ -9,5 +9,212 @@
     <p>
       myFlix is the server-side component of a “movies” web application. This API will provide users with access to information from a database about different movies, directors, and genres. Users will be able to sign up, update their personal information, and create a list of their favorite movies.
     </p>
+    <br/>
+    <table>
+      <tr>
+        <th>
+          Request
+        </th>
+        <th>
+          URL
+        </th>
+        <th>
+          HTTP method
+        </th>
+        <th>
+          Request body data format
+        </th>
+        <th>
+          Response body data format
+        </th>
+      </tr>
+      <tr>
+        <td>
+          Return a list of all movies to the user
+        </td>
+        <td>
+          /movies
+        </td>
+        <td>
+          GET
+        </td>
+        <td>
+          None
+        </td>
+        <td>
+          A JSON object holding data about all the movies
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Return data (description, genre, director, image URL, whether it’s featured or not) about a single movie by title to the user
+        </td>
+        <td>
+          /movies/:title
+        </td>
+        <td>
+          GET
+        </td>
+        <td>
+          None
+        </td>
+        <td>
+          A JSON object holding data about a single movie, containing title, director, and genre property.
+          Example: {
+            title: "Casablanca",
+            director: "Michael Curtiz", 
+            genre: "Romance",
+            imageUrl: "https://en.wikipedia.org/wiki/Casablanca_(film)#/media/File:CasablancaPoster-Gold.jpg",
+            featured:
+          }
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Return data about a genre (description) by movie title
+        </td>
+        <td>
+          /movies/:genre
+        </td>
+        <td>
+          GET
+        </td>
+        <td>
+          None
+        </td>
+        <td>
+          A JSON object holding data about a single genre.
+          Example: {
+            genre: "Romance",
+            description: "Romantic love stories that focus on passion, emotion, and the affectionate romantic involvement of the main characters and the journey that their love takes them through dating, courtship or marriage." 
+          }
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Return data about a director (bio, birth year, death year) by director's name
+        </td>
+        <td>
+          /movies/:director
+        </td>
+        <td>
+          GET
+        </td>
+        <td>
+          None
+        </td>
+        <td>
+          A JSON object holding data about a single director, containing bio, birth year, and death year.
+          Example: {
+            director: "Michael Curtiz", 
+            bio: "A Hungarian-born American film director, recognized as one of the most prolific directors in history.",
+            birthYear: "1886",
+            deathYear: "1962"
+          }
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Add a new user (register)
+        </td>
+        <td>
+          /users
+        </td>
+        <td>
+          POST
+        </td>
+        <td>
+          A JSON object holding data about the new user to add
+        </td>
+        <td>
+          A JSON object holding data about the new user that was added
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Update a user's info (username)
+        </td>
+        <td>
+          /users/:userEmail/:username
+        </td>
+        <td>
+          PUT
+        </td>
+        <td>
+          None
+        </td>
+        <td>
+          A text message indicating the user's username was updated
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Add a movie to the user's list of favorites
+        </td>
+        <td>
+          /users/:username/favorites
+        </td>
+        <td>
+          POST
+        </td>
+        <td>
+          A JSON object holding data about the movie to add
+        </td>
+        <td>
+          A text message indicating the user's favorite movie was added to their list of favorites
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Remove a movie from the user's list of favorites (showing only a text that a movie has been removed
+        </td>
+        <td>
+          /users/:username/favorites/:movie
+        </td>
+        <td>
+          DELETE
+        </td>
+        <td>
+          None
+        </td>
+        <td>
+          A text message indicating the movie is removed from the user's list of favorites
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Remove an existing users (deregister)
+        </td>
+        <td>
+          /users/:userEmail
+        </td>
+        <td>
+          DELETE
+        </td>
+        <td>
+          None
+        </td>
+        <td>
+          A text message indicating the user's email is removed
+        </td>
+      </tr>
+      <tr>
+        <td>
+          
+        </td>
+        <td>
+          
+        </td>
+        <td>
+          
+        </td>
+        <td>
+          
+        </td>
+        <td>
+          
+        </td>
+      </tr>
+    </table>
   </body>
 </html>
