@@ -43,13 +43,14 @@
           None
         </td>
         <td>
+          <!-- image URL -->
           A JSON object holding data about all the movies
         </td>
       </tr>
       <tr>
         <td> 
-          <!-- expand on image URL and feature -->
-          Return data (description, genre, director, image URL, whether it’s featured or not) about a single movie by title to the user
+          <!-- expand on image URL -->
+          Return data (description, genre, director, image URL) about a single movie by title to the user
         </td>
         <td>
           /movies/:title
@@ -66,8 +67,7 @@
             title: "Casablanca",
             director: "Michael Curtiz", 
             genre: "Romance",
-            imageUrl: "https://en.wikipedia.org/wiki/Casablanca_(film)#/media/File:CasablancaPoster-Gold.jpg",
-            featured:
+            imageUrl: "https://en.wikipedia.org/wiki/Casablanca_(film)#/media/File:CasablancaPoster-Gold.jpg"
           }
         </td>
       </tr>
@@ -76,7 +76,6 @@
           Return data about a genre (description) by movie title
         </td>
         <td>
-          <!-- /movies/:genre -->
           /movies/:title/genre
         </td>
         <td>
@@ -95,10 +94,10 @@
       </tr>
       <tr>
         <td>
-          Return data about a director (bio, birth year, death year) by director's name
+          Return data about a director (bio, birth year, death year) by title and director's name
         </td>
         <td>
-          /movies/:director
+          /movies/:title/:director
         </td>
         <td>
           GET
@@ -127,7 +126,11 @@
           POST
         </td>
         <td>
-          A JSON object holding data about the new user to add
+          A JSON object holding data about the new user to add, structured like: 
+          {
+            "userEmail": "jenny.yu.0414@gmail.com",
+            "username": "jenny_jny"
+          }
         </td>
         <td>
           A JSON object holding data about the new user that was added
@@ -135,7 +138,7 @@
       </tr>
       <tr>
         <td>
-          Update a user's info (username)
+          Update a user's info (username) by the user's email
         </td>
         <td>
           /users/:userEmail/:username
@@ -161,7 +164,12 @@
           POST
         </td>
         <td>
-          A JSON object holding data about the movie to add
+          A JSON object holding data about the movie to add, structured like:
+          {
+            "title": "The Wolf of Wall Street",
+            "director": "Martin Scorsese",
+            "genre": "Comedy"
+        }
         </td>
         <td>
           A text message indicating the user's favorite movie was added to their list of favorites
@@ -186,7 +194,7 @@
       </tr>
       <tr>
         <td>
-          Remove an existing user (deregister)
+          Remove an existing user by the user's email (deregister)
         </td>
         <td>
           /users/:userEmail
@@ -199,23 +207,6 @@
         </td>
         <td>
           A text message indicating the user's email is removed
-        </td>
-      </tr>
-      <tr>
-        <td>
-          
-        </td>
-        <td>
-          
-        </td>
-        <td>
-          
-        </td>
-        <td>
-          
-        </td>
-        <td>
-          
         </td>
       </tr>
     </table>

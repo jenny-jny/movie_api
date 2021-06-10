@@ -6,7 +6,7 @@ const app = express();
 
 app.use(bodyParser.json());
 
-let topMovies = [
+let movies = [
   {
     title: 'Casablanca',
     director: 'Michael Curtiz',
@@ -67,19 +67,19 @@ app.use(express.static('public'));
 
 //GET a list of ALL movies
 app.get('/movies', (req, res) => {
-  res.json(topMovies);
+  res.json(movies);
 });
 
-//get the data of a single movie, by title
+//get the data of a single movie by title
 app.get('/movies/:title', (req, res) => {
-  res.json(topMovies.find((movie) => {
+  res.json(movies.find((movie) => {
     return movie.title === req.params.title;
   }));
 });
 
 //get data about a genre by movie title
 app.get('/movies/:title/genre', (req, res) => {
-  let movie = topMovies.find((movie) => {
+  let movie = movies.find((movie) => {
     return movie.title ===req.params.title;
   });
   if(movie){
@@ -89,9 +89,9 @@ app.get('/movies/:title/genre', (req, res) => {
   }
 });
 
-//get data about a director by director's name
-app.get('/movies/:director', (req, res) => {
-  let movie = topMovies.find((movie) => {
+//get data about a director by title and director's name
+app.get('/movies/:title/:director', (req, res) => {
+  let movie = movies.find((movie) => {
     return movie.director ===req.params.director;
   });
   if(movie){
@@ -112,7 +112,7 @@ app.post('/users', (req, res) => {
   }
 });
 
-//update a user's info (username)
+//update a user's info (username) by user's email
 app.put('/users/:userEmail/:username', (req, res) => {
   res.send('Successful PUT request updating user\'s username');
 });
@@ -127,7 +127,7 @@ app.delete('/users/:username/favorites/:movie', (req, res) => {
   res.send('Successful DELETE request removing a movie from the user\'s list of favorites')
 });
 
-//remove an existing user (deregister)	
+//remove an existing user by the user's email (deregister)	
 app.delete('/users/:userEmail', (req, res) => {
   res.send('Successful DELETE request removing an existing user');
 });
