@@ -43,14 +43,12 @@
           None
         </td>
         <td>
-          <!-- image URL -->
           A JSON object holding data about all the movies
         </td>
       </tr>
       <tr>
         <td> 
-          <!-- expand on image URL -->
-          Return data (description, genre, director, image URL) about a single movie by title to the user
+          Return data (title, description, genre, director, image URL, featured) about a single movie by title to the user
         </td>
         <td>
           /movies/:title
@@ -63,12 +61,6 @@
         </td>
         <td>
           A JSON object holding data about a single movie, containing title, director, and genre property.
-          Example: {
-            title: "Casablanca",
-            director: "Michael Curtiz", 
-            genre: "Romance",
-            imageUrl: "https://en.wikipedia.org/wiki/Casablanca_(film)#/media/File:CasablancaPoster-Gold.jpg"
-          }
         </td>
       </tr>
       <tr>
@@ -86,15 +78,11 @@
         </td>
         <td>
           A JSON object holding data about a single genre.
-          Example: {
-            genre: "Romance"
-            <!-- description: "..." -->
-          }
         </td>
       </tr>
       <tr>
         <td>
-          Return data about a director (bio, birth year, death year) by title and director's name
+          Return data about a director (name, bio, birth year, death year) by title and director's name
         </td>
         <td>
           /movies/:title/:director
@@ -106,13 +94,7 @@
           None
         </td>
         <td>
-          A JSON object holding data about a single director, containing bio, birth year, and death year.
-          Example: {
-            director: "Michael Curtiz", 
-            bio: "A Hungarian-born American film director, recognized as one of the most prolific directors in history.",
-            birthYear: "1886",
-            deathYear: "1962"
-          }
+          A JSON object holding data about a single director, containing name, bio, birth year, and death year.
         </td>
       </tr>
       <tr>
@@ -128,8 +110,11 @@
         <td>
           A JSON object holding data about the new user to add, structured like: 
           {
-            "userEmail": "jenny.yu.0414@gmail.com",
-            "username": "jenny_jny"
+            "Username": "jenny_jny",
+            "Password": "12345",
+            "Email": "ranch@gmail.com",
+            "Birthday": new Date("1967-01-01"),
+            "FavoriteMovies": [ObjectId("60cc0d66ead29eb527ada01c"), ObjectId("60cc0cf6ead29eb527ada01b")]
           }
         </td>
         <td>
@@ -141,7 +126,7 @@
           Update a user's info (username) by the user's email
         </td>
         <td>
-          /users/:userEmail/:username
+          /users/:email/:username
         </td>
         <td>
           PUT
@@ -166,10 +151,21 @@
         <td>
           A JSON object holding data about the movie to add, structured like:
           {
-            "title": "The Wolf of Wall Street",
-            "director": "Martin Scorsese",
-            "genre": "Comedy"
-        }
+            "Title": "Gone with the Wind", 
+            "Description": "Gone with the Wind is a 1939 American epic historical romance film adapted from the 1936 novel by Margaret Mitchell. Set in the American South against the backdrop of the American Civil War and the Reconstruction era, the film tells the story of Scarlett O\'Hara, the strong-willed daughter of a Georgia plantation owner. It follows her romantic pursuit of Ashley Wilkes, who is married to his cousin, Melanie Hamilton, and her subsequent marriage to Rhett Butler."",
+            "Genre": {
+              "Name": "Romance",
+              "Description": "Romance is a genre of movie that portrays romantic love stories focusing on passion, emotion, and the affectionate romantic involvement of the main characters and the journey that their love takes them through dating, courtship or marriage.""
+            },
+            "Director": {
+              "Name": "Victor Fleming",
+              "Bio": "Victor Lonzo Fleming was an American film director, cinematographer, and producer.", 
+              "Birth": "1889",
+              "Death": "1949"
+            },
+            "ImagePath": "https://upload.wikimedia.org/wikipedia/commons/2/27/Poster_-_Gone_With_the_Wind_01.jpg", 
+            "Featured": false
+          }
         </td>
         <td>
           A text message indicating the user's favorite movie was added to their list of favorites
@@ -197,7 +193,7 @@
           Remove an existing user by the user's email (deregister)
         </td>
         <td>
-          /users/:userEmail
+          /users/:email
         </td>
         <td>
           DELETE
