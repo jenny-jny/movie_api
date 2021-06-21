@@ -51,7 +51,7 @@
           Return data (title, description, genre, director, image URL, featured) about a single movie by title to the user
         </td>
         <td>
-          /movies/:title
+          /movies/:Title
         </td>
         <td>
           GET
@@ -113,12 +113,20 @@
             "Username": "jenny_jny",
             "Password": "12345",
             "Email": "ranch@gmail.com",
-            "Birthday": new Date("1967-01-01"),
-            "FavoriteMovies": [ObjectId("60cc0d66ead29eb527ada01c"), ObjectId("60cc0cf6ead29eb527ada01b")]
+            "Birthday": "1967-01-01"
           }
         </td>
         <td>
-          A JSON object holding data about the new user that was added
+          A JSON object holding data about the new user that was added, structured like:
+          {
+            "FavoriteMovies": [],
+            "_id": "8hrjksghda84324",
+            "Username": "jenny_jny",
+            "Password": "12345",
+            "Email": "ranch@gmail.com",
+            "Birthday": "1967-01-01T00:00:00.000Z",
+            "__v": 0
+          }
         </td>
       </tr>
       <tr>
@@ -143,7 +151,7 @@
           Add a movie to the user's list of favorites
         </td>
         <td>
-          /users/:username/favorites
+          /users/:Username/favorites/:MovieID
         </td>
         <td>
           POST
@@ -151,20 +159,7 @@
         <td>
           A JSON object holding data about the movie to add, structured like:
           {
-            "Title": "Gone with the Wind", 
-            "Description": "Gone with the Wind is a 1939 American epic historical romance film adapted from the 1936 novel by Margaret Mitchell. Set in the American South against the backdrop of the American Civil War and the Reconstruction era, the film tells the story of Scarlett O\'Hara, the strong-willed daughter of a Georgia plantation owner. It follows her romantic pursuit of Ashley Wilkes, who is married to his cousin, Melanie Hamilton, and her subsequent marriage to Rhett Butler."",
-            "Genre": {
-              "Name": "Romance",
-              "Description": "Romance is a genre of movie that portrays romantic love stories focusing on passion, emotion, and the affectionate romantic involvement of the main characters and the journey that their love takes them through dating, courtship or marriage.""
-            },
-            "Director": {
-              "Name": "Victor Fleming",
-              "Bio": "Victor Lonzo Fleming was an American film director, cinematographer, and producer.", 
-              "Birth": "1889",
-              "Death": "1949"
-            },
-            "ImagePath": "https://upload.wikimedia.org/wikipedia/commons/2/27/Poster_-_Gone_With_the_Wind_01.jpg", 
-            "Featured": false
+            "FavoriteMovies": "MovieID"
           }
         </td>
         <td>
@@ -176,7 +171,7 @@
           Remove a movie from the user's list of favorites
         </td>
         <td>
-          /users/:username/favorites/:movie
+          /users/:Username/favorites/:MovieID
         </td>
         <td>
           DELETE
@@ -190,10 +185,10 @@
       </tr>
       <tr>
         <td>
-          Remove an existing user by the user's email (deregister)
+          Delete an existing user by username (deregister)
         </td>
         <td>
-          /users/:email
+          /users/:Username
         </td>
         <td>
           DELETE
