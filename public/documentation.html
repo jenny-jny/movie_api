@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <title>myFlix - Documentation</title>
-    <link href="../styles.css" rel="stylesheet" type="text/css"/>
+    <link href="./css/styles.css" rel="stylesheet" type="text/css"/>
   </head>
   <body>
     <p>
@@ -43,12 +43,29 @@
           None
         </td>
         <td>
-          A JSON object holding data about all the movies
+          A JSON object holding data about all the movies, structured like: 
+          {
+            "Genre": {
+                "Name": "Romance",
+                "Description": "Romance is a genre of movie that portrays romantic love stories focusing on passion, emotion, and the affectionate romantic involvement of the main characters and the journey that their love takes them through dating, courtship or marriage."
+            },
+            "Director": {
+                "Name": "Baz Luhrmann",
+                "Bio": "Bazmark 'Baz' Luhrmann (born Mark Anthony Luhrmann) is an Australian director, writer, and producer with projects spanning film, television, opera, theatre, music, and recording industries.",
+                "Birth": "1962",
+                "Death": "N/A"
+            },
+            "_id": "60cc0224ead29eb527ada013",
+            "Title": "Romeo + Juliet",
+            "Description": "William Shakespeare’s Romeo and Juliet is a 1996 American romantic crime tragedy film. It is an adaptation and modernization of William Shakespeare's tragedy Romeo and Juliet. The film portrays two teenagers who fall in love, despite of them being members of feuding families.",
+            "ImagePath": "https://upload.wikimedia.org/wikipedia/en/b/b4/William_shakespeares_romeo_and_juliet_movie_poster.jpg",
+            "Featured": false
+        }
         </td>
       </tr>
       <tr>
         <td> 
-          Return data (title, description, genre, director, image URL, featured) about a single movie by title to the user
+          Return data about a single movie by title to the user
         </td>
         <td>
           /movies/:Title
@@ -60,15 +77,30 @@
           None
         </td>
         <td>
-          A JSON object holding data about a single movie, containing title, director, and genre property.
+          A JSON object holding data about a single movie, structured like: 
+          "Genre": {
+            "Name": "Romance",
+            "Description": "Romance is a genre of movie that portrays romantic love stories focusing on passion, emotion, and the affectionate romantic involvement of the main characters and the journey that their love takes them through dating, courtship or marriage."
+          },
+          "Director": {
+              "Name": "Baz Luhrmann",
+              "Bio": "Bazmark 'Baz' Luhrmann (born Mark Anthony Luhrmann) is an Australian director, writer, and producer with projects spanning film, television, opera, theatre, music, and recording industries.",
+              "Birth": "1962",
+              "Death": "N/A"
+          },
+          "_id": "60cc083eead29eb527ada016",
+          "Title": "The Great Gatsby",
+          "Description": "The Great Gatsby is a 2013 romantic drama film based on F. Scott Fitzgerald's 1925 novel. Jay-Z served as executive producer. The film follows the life and times of millionaire Jay Gatsby (DiCaprio) and his neighbor Nick Carraway (Maguire), who recounts his encounter with Gatsby at the height of the Roaring Twenties on Long Island.",
+          "ImagePath": "https://upload.wikimedia.org/wikipedia/en/c/c2/TheGreatGatsby2013Poster.jpg",
+          "Featured": true
         </td>
       </tr>
       <tr>
         <td>
-          Return data about a genre (description) by movie title
+          Return data about a genre by movie title
         </td>
         <td>
-          /movies/:title/genre
+          /movies/:Title/genre
         </td>
         <td>
           GET
@@ -77,15 +109,19 @@
           None
         </td>
         <td>
-          A JSON object holding data about a single genre.
+          A JSON object holding data about a single genre, structured like:
+          {
+            "Name": "Adventure",
+            "Description": "Adventure films are a genre of film whose plots feature elements of travel. They typically involve protagonists who must leave their home or place of comfort and go to far away lands to fulfill a goal."
+        }
         </td>
       </tr>
       <tr>
         <td>
-          Return data about a director (name, bio, birth year, death year) by title and director's name
+          Return data about a director by movie title
         </td>
         <td>
-          /movies/:title/:director
+          /movies/:Title/director
         </td>
         <td>
           GET
@@ -94,7 +130,13 @@
           None
         </td>
         <td>
-          A JSON object holding data about a single director, containing name, bio, birth year, and death year.
+          A JSON object holding data about a single director, containing name, bio, birth year, and death year, structured like:
+          {
+            "Name": "Pete Docter",
+            "Bio": "Peter Hans Docter is an American animator, film director, screenwriter, producer, voice actor, and chief creative officer of Pixar.",
+            "Birth": "1968",
+            "Death": "N/A"
+        }
         </td>
       </tr>
       <tr>
@@ -110,7 +152,7 @@
         <td>
           A JSON object holding data about the new user to add, structured like: 
           {
-            "Username": "jenny_jny",
+            "Username": "jc-jcy",
             "Password": "12345",
             "Email": "ranch@gmail.com",
             "Birthday": "1967-01-01"
@@ -120,8 +162,8 @@
           A JSON object holding data about the new user that was added, structured like:
           {
             "FavoriteMovies": [],
-            "_id": "8hrjksghda84324",
-            "Username": "jenny_jny",
+            "_id": "60d105eb527305263163c3c1",
+            "Username": "jc-jcy",
             "Password": "12345",
             "Email": "ranch@gmail.com",
             "Birthday": "1967-01-01T00:00:00.000Z",
@@ -131,19 +173,34 @@
       </tr>
       <tr>
         <td>
-          Update a user's info (username) by the user's email
+          Update a user's info (username) by the username
         </td>
         <td>
-          /users/:email/:username
+          /users/:Username
         </td>
         <td>
           PUT
         </td>
         <td>
-          None
+          A JSON obect holding data about the user, structured like: 
+          {
+            "Username": "jc-jcy",
+            "Password": "12345",
+            "Email": "ranch@gmail.com",
+            "Birthday": "1967-01-05"
+        }
         </td>
         <td>
-          A text message indicating the user's username was updated
+          A JSON object holding data about the user that was updated, structured like:
+          {
+            "FavoriteMovies": [],
+            "_id": "60d105eb527305263163c3c1",
+            "Username": "jc-jcy",
+            "Password": "12345",
+            "Email": "ranch@gmail.com",
+            "Birthday": "1967-01-01T00:00:00.000Z",
+            "__v": 0
+          }     
         </td>
       </tr>
       <tr>
@@ -157,13 +214,21 @@
           POST
         </td>
         <td>
-          A JSON object holding data about the movie to add, structured like:
-          {
-            "FavoriteMovies": "MovieID"
-          }
+          None
         </td>
         <td>
-          A text message indicating the user's favorite movie was added to their list of favorites
+          A JSON object holding data about the user with favorite movie added, structured like:
+          {
+            "FavoriteMovies": [
+                "60cc0d66ead29eb527ada01c"
+            ],
+            "_id": "60d105eb527305263163c3c1",
+            "Username": "jc-jcy",
+            "Password": "12345",
+            "Email": "ranch@gmail.com",
+            "Birthday": "1967-01-05T00:00:00.000Z",
+            "__v": 0
+        }     
         </td>
       </tr>
       <tr>
@@ -180,8 +245,17 @@
           None
         </td>
         <td>
-          A text message indicating the movie is removed from the user's list of favorites
-        </td>
+          A JSON object holding data about the user with favorite movie deleted, structured like:
+          {
+            "FavoriteMovies": [],
+            "_id": "60d105eb527305263163c3c1",
+            "Username": "jc-jcy",
+            "Password": "12345",
+            "Email": "ranch@gmail.com",
+            "Birthday": "1967-01-05T00:00:00.000Z",
+            "__v": 0
+          }        
+      </td>
       </tr>
       <tr>
         <td>
@@ -197,7 +271,7 @@
           None
         </td>
         <td>
-          A text message indicating the user's email is removed
+          A text message indicating the user is removed.
         </td>
       </tr>
     </table>
