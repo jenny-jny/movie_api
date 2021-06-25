@@ -30,7 +30,7 @@ passport.use(new LocalStrategy({ //before asking Passport to authenticate a requ
 passport.use(new JWTStrategy({ //before asking Passport to authenticate a request, the strategy (or strategies) used by an application must be configured. Strategies, and their configuration, are supplied via the use() function.
   jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken(), //parses credentials contained in the request
   secretOrKey: 'your_jwt_secret' //parses credentials contained in the request
-}, (jwtPayload, callback) => { //then invokes verify (authentication) callback with credentials as arguments
+}, (jwtPayload, callback) => { //then invokes verify (authentication) callback with credentials as arguments. jwt_payload is an object literal containing the decoded JWT payload.
   return Users.findById(jwtPayload._id).then((user) => { //when a promise is resolved, it can optionally return a value. This piece of data is assigned to the parameters of the callback function in .then(). A promise is a returned object to which you attach callbacks, instead of passing callbacks into a function. 
     return callback(null, user); //error = null
   }).catch((error) => {
