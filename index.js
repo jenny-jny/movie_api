@@ -24,7 +24,7 @@ app.use(morgan('common'));
 app.use(express.static('public'));
 
 //default text response when at '/'
-app.get('/', passport.authenticate('jwt', {session: false}), (req, res) => {
+app.get('/', passport.authenticate('jwt', {session: false}), (req, res) => { //does not save user in the session, as bearer token sent along request everytime 
   res.send('Welcome to myFlix!');
 });
 
@@ -69,7 +69,7 @@ app.get('/movies/:Title/director', passport.authenticate('jwt', {session: false}
 });
 
 //add a new user (register)
-app.post('/users', passport.authenticate('jwt', {session: false}), (req, res) => {
+app.post('/users', (req, res) => {
   Users.findOne({Username : req.body.Username}).then((user) => {
     if(user){
       return res.status(400).send(req.body.Username + ' already exists.');
