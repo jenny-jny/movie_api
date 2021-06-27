@@ -39,7 +39,7 @@ app.use(morgan('common'));
 app.use(express.static('public'));
 
 //default text response when at '/'
-app.get('/', passport.authenticate('jwt', {session: false}), (req, res) => { //does not save user in the session, as bearer token sent along request everytime 
+app.get('/', (req, res) => { //does not save user in the session, as bearer token sent along request everytime 
   res.send('Welcome to myFlix!');
 });
 
