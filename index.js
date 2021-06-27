@@ -4,6 +4,8 @@ bodyParser = require('body-parser'),
 mongoose = require('mongoose'),
 passport = require('passport'),
 cors = require('cors'),
+//import check and validationResult APIs from the package
+{check, validationResult} = require('express-validator'),
 Models = require('./models');
 
 require('./passport');
@@ -82,7 +84,18 @@ app.get('/movies/:Title/director', passport.authenticate('jwt', {session: false}
 });
 
 //add a new user (register)
-app.post('/users', (req, res) => {
+app.post('/users', [
+  //validation logic for request here
+  check('Username', 'Username is required').isLength({min: 5}),
+  check('Username', 'Username contains non-alphanumeric characters - not allowed').isAlphanumeric(),
+  check('Password', 'Pasword is required').not().isEmpty(), //chain methods; opposite of empty or is not empty
+  check('Email', 'Email does not appear to be valid').isEmail()
+], (req, res) => {
+  //check the validation object for errors
+  let errors = validationResult(req);
+  if(!errors.isEmpty){
+    return res.status(422).json({errors: errors.array()});
+  }
   let hashedPassword = Users.hashPassword(req.params.Password);
   Users.findOne({Username : req.body.Username}).then((user) => { //search to see if a user with the requested username already exists
     if(user){
@@ -107,7 +120,16 @@ app.post('/users', (req, res) => {
 });
 
 //update a user's info by username
-app.put('/users/:Username', passport.authenticate('jwt', {session: false}), (req, res) => {
+app.put('/users/:Username', passport.authenticate('jwt', {session: false}), [
+  check('Username', 'Username is required').isLength({min: 5}),
+  check('Username', 'Username contains non-alphanumeric characters - not allowed').isAlphanumeric(),
+  check('Password', 'Password is required').not().isEmpty(),
+  check('Email', 'Email does not appear to be valid').isEmail()
+], (req, res) => {
+  let errors = validationResult(req);
+  if(!errors.isEmpty()){
+    return res.status(422).json({errors: errors.array()});
+  }
   Users.findOneAndUpdate({Username: req.params.Username}, {$set: {
     Username: req.body.Username,
     Password: req.body.Password,
