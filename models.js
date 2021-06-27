@@ -1,4 +1,5 @@
-const mongoose = require('mongoose');
+const mongoose = require('mongoose'),
+bcrypt = require('bcrypt');
 
 let movieSchema = mongoose.Schema({
   Title: {type: String, required: true},
@@ -23,6 +24,14 @@ let userSchema = mongoose.Schema({
   Birthday: Date,
   FavoriteMovies: [{type: mongoose.Schema.Types.ObjectId, ref: 'Movie'}]
 });
+
+userSchema.statics.hashPassword = (password) => { //statics method
+  return bcrypt.hashSync(password, 10) //Synchronous approach; a salt will be generated with the specified number of rounds and used to hash the password to protect against rainbow table attacks
+};
+
+userSchema.methods.validatePassword = function(password){ //instance method
+  return bcrypt.compareSync(password, this.Password); //synchronous approach
+};
 
 let Movie = mongoose.model('Movie', movieSchema);
 let User = mongoose.model('User', userSchema);
