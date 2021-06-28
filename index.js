@@ -14,17 +14,7 @@ let = allowedOrigins = ['http://localhost:8080', 'http://testsite.com'];
 
 const app = express();
 app.use(bodyParser.json());
-app.use(cors({
-  origin: (origin, callback) => {
-    if(!origin) //allows requests with no origin, like mobile apps
-    return callback(null, true); //error = null, allow access = true
-    if(allowedOrigins.indexOf(origin) === -1){ //if a specific origin isn't found on the list of allowed origins
-      let message = 'The CORS policy for this application doesn\'t allow access from the origin ' + origin;
-      return callback(new Error(message), false); //allow access = false
-    }
-    return callback(null, true); //error = null, allow access = true
-  }
-}));
+app.use(cors());
 let auth = require('./auth')(app);
 
 const Movies = Models.Movie;
