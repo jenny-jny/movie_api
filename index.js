@@ -10,8 +10,6 @@ Models = require('./models');
 
 require('./passport');
 
-let = allowedOrigins = ['http://localhost:8080', 'http://testsite.com'];
-
 const app = express();
 app.use(bodyParser.json());
 app.use(cors());
