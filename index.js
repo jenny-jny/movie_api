@@ -4,9 +4,9 @@ bodyParser = require('body-parser'),
 mongoose = require('mongoose'),
 passport = require('passport'),
 cors = require('cors'),
-//import check and validationResult APIs from the package
-{check, validationResult} = require('express-validator'),
 Models = require('./models');
+//import check and validationResult APIs from the package
+const {check, validationResult} = require('express-validator');
 
 require('./passport');
 
