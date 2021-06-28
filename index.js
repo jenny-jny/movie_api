@@ -4,9 +4,9 @@ bodyParser = require('body-parser'),
 mongoose = require('mongoose'),
 passport = require('passport'),
 cors = require('cors'),
-Models = require('./models');
 //import check and validationResult APIs from the package
-const {check, validationResult} = require('express-validator');
+{check, validationResult} = require('express-validator'),
+Models = require('./models');
 
 require('./passport');
 
@@ -82,7 +82,7 @@ app.post('/users', [
 ], (req, res) => {
   //check the validation object for errors
   let errors = validationResult(req);
-  if(!errors.isEmpty){
+  if(!errors.isEmpty()){
     return res.status(422).json({errors: errors.array()});
   }
   let hashedPassword = Users.hashPassword(req.body.Password);
