@@ -20,8 +20,8 @@ The server-side component of a “movies” web application,including the server
 * ESLint
 * Prettier
 
-##Documentation
-https://github.com/jenny-jny/movie_api/blob/fef958a87f46fb8608bb98dcef939ae5bdf68822/public/documentation.html
+## Documentation
+* https://github.com/jenny-jny/movie_api/blob/fef958a87f46fb8608bb98dcef939ae5bdf68822/public/documentation.html
 
 ## Project Showcase
 * https://jny-myflix.herokuapp.com
