@@ -1,7 +1,6 @@
 const express = require('express'),
 router = express.Router(),
 passport = require('passport');
-require('../passport');
 const moviesController = require('../controllers/movies');
 
 router.get('/movies', passport.authenticate('jwt', {session: false}), moviesController.getMovies);
