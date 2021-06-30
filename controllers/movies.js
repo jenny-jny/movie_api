@@ -1,10 +1,11 @@
+const passport = require('passport');
 Models = require('../models');
 const Movies = Models.Movie;
 
 //authentication
-// const authenticate = (passport) => {
-//   passport.authenticate('jwt', {session: false});
-// },
+const authenticate = () => {
+  return passport.authenticate('jwt', {session: false});
+},
 
 //GET a list of ALL movies
 getMovies = (req, res) => {
@@ -46,4 +47,4 @@ getMovieDirector = (req, res) => {
   })
 }
 
-module.exports = {getMovies, getMovieTitle, getMovieGenre, getMovieDirector};
+module.exports = {authenticate, getMovies, getMovieTitle, getMovieGenre, getMovieDirector};
