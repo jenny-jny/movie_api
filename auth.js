@@ -2,7 +2,7 @@ const passport = require('passport'),
 jwt = require('jsonwebtoken'),
 jwtSecret = 'your_jwt_secret'; //same key as used in the JWTStrategy
 
-require('./passport'); //local passport file evaluated (executed); If a file extension is not specified, the first thing Node will try to resolve is a .js file
+require('./passport'); //local passport file evaluated (executed) whenever or at the earliest a JWTtoken is needed; If a file extension is not specified, the first thing Node will try to resolve is a .js file
 
 let generateJWTToken = (user) => {
   return jwt.sign(user, jwtSecret, {
