@@ -1,12 +1,12 @@
-const passport = require('passport');
 const express = require('express'),
 router = express.Router(),
 usersController = require('../controllers/users');
 
-router.post('/users', usersController.validation, usersController.addUser);
-router.put('/users/:Username', passport.authenticate('jwt', {session: false}), usersController.validation, usersController.updateUser);
-router.post('/users/:Username/favorites/:MovieID', passport.authenticate('jwt', {session: false}), usersController.addUserFavoriteMovie);
-router.delete('/users/:Username/favorites/:MovieID', passport.authenticate('jwt', {session: false}), usersController.removeUserFavoriteMovie);
-router.delete('/users/:Username', passport.authenticate('jwt', {session: false}), usersController.removeUser);
+//userInputValidate() and authenticate() because needs to be immediately called, unlike getMovies, which is an asynch function
+router.post('/', usersController.userInputValidate(), usersController.addUser);
+router.put('/:Username', usersController.authenticate(), usersController.userInputValidate(), usersController.updateUser);
+router.post('/:Username/favorites/:MovieID', usersController.authenticate(), usersController.addUserFavoriteMovie);
+router.delete('/:Username/favorites/:MovieID', usersController.authenticate(), usersController.removeUserFavoriteMovie);
+router.delete('/:Username', usersController.authenticate(), usersController.removeUser);
 
 module.exports = router;
