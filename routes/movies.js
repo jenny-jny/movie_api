@@ -1,11 +1,11 @@
 const express = require('express'),
 router = express.Router(),
-passport = require('passport');
-const moviesController = require('../controllers/movies');
+moviesController = require('../controllers/movies');
 
-router.get('/movies', passport.authenticate('jwt', {session: false}), moviesController.getMovies);
-router.get('/movies/:Title', passport.authenticate('jwt', {session: false}), moviesController.getMovieTitle);
-router.get('/movies/:Title/genre', passport.authenticate('jwt', {session: false}), moviesController.getMovieGenre);
-router.get('/movies/:Title/director', passport.authenticate('jwt', {session: false}), moviesController.getMovieDirector);
+//authenticate() because needs to be immediately called, unlike getMovies, which is an asynch function
+router.get('/', moviesController.authenticate(), moviesController.getMovies);
+router.get('/:Title', moviesController.authenticate(), moviesController.getMovieTitle);
+router.get('/:Title/genre', moviesController.authenticate(), moviesController.getMovieGenre);
+router.get('/:Title/director', moviesController.authenticate(), moviesController.getMovieDirector);
 
 module.exports = router;
