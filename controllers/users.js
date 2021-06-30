@@ -1,24 +1,24 @@
 const passport = require('passport');
-require('../passport');
 //import check and validationResult APIs from the package
 const {check, validationResult} = require('express-validator'),
 Models = require('../models');
-
 const Users = Models.User;
 
 //authentication
-const authenticate = (passport) => {
-  passport.authenticate('jwt', {session: false});
+const authenticate = () => {
+  return passport.authenticate('jwt', {session: false});
 },
 
 //user input validation
-validation = [
+userInputValidate = () => {
+  return [
   //validation logic for request here
   check('Username', 'Username is required').isLength({min: 5}),
   check('Username', 'Username contains non-alphanumeric characters - not allowed').isAlphanumeric(),
   check('Password', 'Password is required').not().isEmpty(), //chain methods; opposite of empty or is not empty
   check('Email', 'Email does not appear to be valid').isEmail()
-],
+  ]
+},
 
 //add a new user (register)
 addUser = (req, res) => {
@@ -120,4 +120,4 @@ removeUser = (req, res) => {
   })
 }
 
-module.exports = {authenticate, validation, addUser, updateUser, addUserFavoriteMovie, removeUserFavoriteMovie, removeUser};
+module.exports = {authenticate, userInputValidate, addUser, updateUser, addUserFavoriteMovie, removeUserFavoriteMovie, removeUser};
