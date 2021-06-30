@@ -12,8 +12,8 @@ const auth = require('./auth')(app);
 const routesMovies = require('./routes/movies'),
 routesUsers = require('./routes/users');
 
-// mongoose.connect(process.env.CONNECTION_URI, {useNewUrlParser: true, useUnifiedTopology: true});
-mongoose.connect('mongodb://localhost:27017/myFlixDB', {useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect(process.env.CONNECTION_URI, {useNewUrlParser: true, useUnifiedTopology: true});
+// mongoose.connect('mongodb://localhost:27017/myFlixDB', {useNewUrlParser: true, useUnifiedTopology: true});
 
 //logging with morgan
 app.use(morgan('common'));
