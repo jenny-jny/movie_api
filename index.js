@@ -27,7 +27,7 @@ app.get('/', (req, res) => { //does not save user in the session, as bearer toke
 });
 
 app.use('/movies', routesMovies);
-app.use('/users', routesUsers);
+app.use('', routesUsers);
 
 //error handling
 app.use((err, req, res, next) => {
