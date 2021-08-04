@@ -57,9 +57,9 @@ updateUser = (req, res) => {
   if(!errors.isEmpty()){
     return res.status(422).json({errors: errors.array()});
   }
-  Users.findOne({Username : req.params.Username}).then((user) => {
+  Users.findOne({Username : req.body.Username}).then((user) => {
     if(user){
-      return res.status(400).send(req.params.Username + ' already exists.'); //if the user is found, send a response that it already exists
+      return res.status(400).send(req.body.Username + ' already exists.'); //if the user is found, send a response that it already exists
     }else{
       Users.findOneAndUpdate({Username: req.params.Username}, {$set: {
         Username: req.body.Username,
