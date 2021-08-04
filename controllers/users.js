@@ -57,19 +57,28 @@ updateUser = (req, res) => {
   if(!errors.isEmpty()){
     return res.status(422).json({errors: errors.array()});
   }
-  Users.findOneAndUpdate({Username: req.params.Username}, {$set: {
-    Username: req.body.Username,
-    Password: req.body.Password,
-    Email: req.body.Email,
-    Birthday: req.body.Birthday
-  }}, {new: true}, // This line makes sure that the updated document is returned 
-  (err, updatedUser) => {
-    if(err){
-      console.error(err);
-      res.status(500).send('Error: ' + err);
+  Users.findOne({Username : req.params.Username}).then((user) => {
+    if(user){
+      return res.status(400).send(req.params.Username + ' already exists.'); //if the user is found, send a response that it already exists
     }else{
-      res.json(updatedUser);
+      Users.findOneAndUpdate({Username: req.params.Username}, {$set: {
+        Username: req.body.Username,
+        Password: req.body.Password,
+        Email: req.body.Email,
+        Birthday: req.body.Birthday
+      }}, {new: true}, // This line makes sure that the updated document is returned 
+      (err, updatedUser) => {
+        if(err){
+          console.error(err);
+          res.status(500).send('Error: ' + err);
+        }else{
+          res.json(updatedUser);
+        }
+      });
     }
+  }).catch((err) => {
+    console.error(err);
+    res.status(500).send('Error: ' + err);
   });
 },
 
