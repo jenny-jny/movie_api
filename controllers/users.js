@@ -50,6 +50,17 @@ addUser = (req, res) => {
   });
 },
 
+// Get a user by username
+getUser = (req, res) => {
+  passport.authenticate('jwt', {session: false}),
+  Users.findOne({Username: req.params.Username }).then((user) => {
+    res.json(user);
+  }).catch((err) => {
+    console.error(err);
+    res.status(500).send('Error: ' + err);
+  });
+},
+
 //update a user's info by username
 updateUser = (req, res) => {
   passport.authenticate('jwt', {session: false});
@@ -121,4 +132,4 @@ removeUser = (req, res) => {
   })
 }
 
-module.exports = {authenticate, userInputValidate, addUser, updateUser, addUserFavoriteMovie, removeUserFavoriteMovie, removeUser};
+module.exports = {authenticate, userInputValidate, addUser, getUser, updateUser, addUserFavoriteMovie, removeUserFavoriteMovie, removeUser};
