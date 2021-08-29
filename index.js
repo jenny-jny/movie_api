@@ -2,9 +2,9 @@ const mongoose = require('mongoose'),
 express = require('express'),
 bodyParser = require('body-parser'),
 morgan = require('morgan'),
-cors = require('cors')
-
+cors = require('cors'),
 app = express();
+
 app.use(bodyParser.json());
 app.use(cors());
 const auth = require('./auth')(app);
