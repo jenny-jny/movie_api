@@ -1,13 +1,25 @@
+/**
+ * @requires passport
+ * @requires models
+*/
 const passport = require('passport');
 Models = require('../models');
+
+ /**
+  * @constant
+  * @type {Movie}
+ */
 const Movies = Models.Movie;
 
-//authentication
 const authenticate = () => {
   return passport.authenticate('jwt', {session: false});
 },
 
-//GET a list of ALL movies
+/**
+ * GET the data of all movies
+ * @param {Object} req
+ * @param {Object} res
+ */
 getMovies = (req, res) => {
   Movies.find().then((movies) => {
     res.status(201).json(movies);
@@ -17,7 +29,11 @@ getMovies = (req, res) => {
   });
 },
 
-//get the data of a single movie by title
+/** 
+ * GET the data of a single movie by movie title
+ * @param {Object} req
+ * @param {Object} res
+ */
 getMovieTitle = (req, res) => {
   Movies.findOne({Title: req.params.Title}).then((movie) => {
     res.json(movie);
@@ -27,7 +43,11 @@ getMovieTitle = (req, res) => {
   });
 },
 
-//get data (descrition) about a genre by movie title 
+/**
+ * GET the data of a genre by movie title 
+ * @param {Object} req
+ * @param {Object} res
+ */
 getMovieGenre = (req, res) => {
   Movies.findOne({Title: req.params.Title}).then((movie) => {
     res.json(movie.Genre);
@@ -37,7 +57,11 @@ getMovieGenre = (req, res) => {
   })
 },
 
-//get data about a director by movie title 
+/**
+ * GET the data of a director by movie title 
+ * @param {Object} req
+ * @param {Object} res
+ */
 getMovieDirector = (req, res) => {
   Movies.findOne({Title: req.params.Title}).then((movie) => {
     res.json(movie.Director);
@@ -47,4 +71,11 @@ getMovieDirector = (req, res) => {
   })
 }
 
+/**
+ * @module movies.authenticate
+ * @module movies.getMovies
+ * @module movies.getMovieTitle
+ * @module movies.getMovieGenre
+ * @module movies.getMovieDirector
+ */
 module.exports = {authenticate, getMovies, getMovieTitle, getMovieGenre, getMovieDirector};

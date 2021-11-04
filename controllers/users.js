@@ -4,12 +4,10 @@ const {check, validationResult} = require('express-validator'),
 Models = require('../models');
 const Users = Models.User;
 
-//authentication
 const authenticate = () => {
   return passport.authenticate('jwt', {session: false});
 },
 
-//user input validation
 userInputValidate = () => {
   return [
   //validation logic for request here
@@ -20,7 +18,11 @@ userInputValidate = () => {
   ]
 },
 
-//add a new user (register)
+/**
+ * Register
+ * @param {Object} req
+ * @param {Object} res
+ */
 addUser = (req, res) => {
   //check the validation object for errors
   let errors = validationResult(req);
@@ -50,7 +52,11 @@ addUser = (req, res) => {
   });
 },
 
-// Get a user by username
+/**
+ * GET a user by username
+ * @param {Object} req
+ * @param {Object} res
+ */
 getUser = (req, res) => {
   passport.authenticate('jwt', {session: false}),
   Users.findOne({Username: req.params.Username }).then((user) => {
@@ -61,7 +67,11 @@ getUser = (req, res) => {
   });
 },
 
-//update a user's info by username
+/**
+ * Update a user's info by username
+ * @param {Object} req
+ * @param {Object} res
+ */
 updateUser = (req, res) => {
   passport.authenticate('jwt', {session: false});
   let errors = validationResult(req);
@@ -85,7 +95,11 @@ updateUser = (req, res) => {
   });
 },
 
-//add a movie to the user's list of favorites
+/**
+ * Add a movie to the user's list of favorites
+ * @param {Object} req
+ * @param {Object} res
+ */
 addUserFavoriteMovie = (req, res) => {
   passport.authenticate('jwt', {session: false});
   Users.findOneAndUpdate({Username: req.params.Username}, {
@@ -101,7 +115,11 @@ addUserFavoriteMovie = (req, res) => {
   });
 },
 
-//remove a movie from the user's list of favorites
+/**
+ * Remove a movie from the user's list of favorites
+ * @param {Object} req
+ * @param {Object} res
+ */
 removeUserFavoriteMovie = (req, res) => {
   passport.authenticate('jwt', {session: false});
   Users.findOneAndUpdate({Username: req.params.Username}, {
@@ -117,7 +135,10 @@ removeUserFavoriteMovie = (req, res) => {
   });
 },
 
-//remove an existing user by username (deregister)
+/**Remove an existing user by username (deregister)
+ * @param {Object} req
+ * @param {Object} res
+ */
 removeUser = (req, res) => {
   passport.authenticate('jwt', {session: false});
   Users.findOneAndRemove({Username: req.params.Username}).then((user) => {
