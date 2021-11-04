@@ -71,11 +71,4 @@ getMovieDirector = (req, res) => {
   })
 }
 
-/**
- * @module movies.authenticate
- * @module movies.getMovies
- * @module movies.getMovieTitle
- * @module movies.getMovieGenre
- * @module movies.getMovieDirector
- */
 module.exports = {authenticate, getMovies, getMovieTitle, getMovieGenre, getMovieDirector};
